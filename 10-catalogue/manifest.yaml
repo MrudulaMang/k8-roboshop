@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: catalogue
-          image: mrudula158/catalogue
+          image: mrudula158/catalogue:1.0.0
           imagePullPolicy: Always
       resources:
         requests:
@@ -45,7 +45,7 @@ spec:
         limits:
           memory: "128Mi"
           cpu: "100m" 
-      readinessprobe:
+      readinessProbe:
         # httpGet:
         #   path: /health
         #   port: 8080
@@ -54,7 +54,7 @@ spec:
         failureThreshold: 2 #number of times try to restart 
         periodSeconds: 10 # for every 10 secs probe
         initialDelaySeconds: 15 #5 # wait before first probe
-      livenessprobe:
+      livenessProbe:
         httpGet:
           path: /health
           port: 8080
