@@ -1,0 +1,10 @@
+#Session 58
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+  namespace: roboshop
+spec:
+  containeres:
+    - name: debug
+      image: mrudula158/debug:1.0.0
