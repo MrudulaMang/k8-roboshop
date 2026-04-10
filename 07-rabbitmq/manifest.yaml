@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq
+  namespace: roboshop
+data:
+  RABBITMQ_DEFAULT_USER: roboshop
+  RABBITMQ_DEFAULT_PASS: roboshop123
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: roboshop
+  labels:
+      project: roboshop
+      tier: db
+      component: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: roboshop
+      tier: db
+      component: rabbitmq
+  template:
+    containers:
+    - name: rabbitmq
+      image: mrudula158/rabbitmq:1.0.0
+      envFrom: 
+        - configMapRef:
+          name: rabbitmq
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  namespace: rabbitmq
+  labels:
+    project: roboshop
+    tier: db
+    component: rabbitmq
+spec:
+  selector:
+    project: roboshop
+    tier: db
+    component: rabbitmq
+  ports:
+    protocol: TCP
+    port: 5672
+    targetPort: 5672
