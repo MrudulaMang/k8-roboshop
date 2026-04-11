@@ -53,10 +53,6 @@ template:
           port: 8080
           failureThreshold: 2
           periodSeconds: 10 
-      ports:
-        protocol: TCP`
-        port: 8080
-        targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -72,8 +68,12 @@ spec:
     project: roboshop
     tier: backend
     component: payment
+  ports:
+    protocol: TCP
+    port: 8080
+    targetPort: 8080  
 
-# in dcoker payment.ini comment uid=1001 and gid=1001
-# as we are using alpine we get id's uid 100 gid 101
+# in docker payment.ini comment uid=1001 and gid=1001
+# as we are using alpine start from 100, so, we get id's uid 100 gid 101
 
 

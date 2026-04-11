@@ -1,13 +1,4 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cart
-  namespace: roboshop
-data:
-  REDIS_HOST: "redis" 
-  CATALOGUE_HOST: "catalogue" 
-  CATALOGUE_PORT: "8080"
----
+#Session 59 1:06
 apiVersion: apps/v1
 kind: deployment
 metadata: 
