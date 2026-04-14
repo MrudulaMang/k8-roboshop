@@ -8,7 +8,7 @@ metadata:
     tier: db
     component: mongodb
 spec:
-  replicas: 1 # if u  dont replicas the default value is 1
+  replicas: 1 # if u dont mention replicas the default value is 1
   selector:
     matchLabels:
       project: roboshop

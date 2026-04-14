@@ -2,11 +2,14 @@ resource "aws_instance" "docker_roboshop"{
  ami           = "ami-0220d79f3f480ecf5"
  instance_type = "t3.micro"
  vpc_security_group_ids = [aws_security_group.allow_tls.id]
+
  root_block_device {
       volume_size = 50
       volume_type = "gp3"
  }
- user_data = file("disk.sh") 
+ 
+ user_data = file("disk.sh")
+ 
  tags = {
     Name    = "workstation"
     Project = "roboshop"

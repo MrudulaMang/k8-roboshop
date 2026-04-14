@@ -21,7 +21,9 @@ sudo usermod -aG docker ec2-user
             # ✔️ No need to relogin into ec2 after assigning the ec2-user to docker grp
             # ✔️ Reloads full login environment
             # ✔️ Picks up new groups
-ARCH=amd64
+            
+PLATFORM=Linux_amd64
+#ARCH=amd64
 curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
 tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
