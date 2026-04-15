@@ -1,0 +1,3 @@
+apiVersion: apps/v1
+kind: deployment
+Error from server (BadRequest): error when creating "manifest.yaml": Deployment in version "v1" cannot be handled as a Deployment: unable to parse quantity's suffix
