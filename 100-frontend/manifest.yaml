@@ -90,11 +90,11 @@ spec:
         project: roboshop
         tier: frontend
         component: frontend
-    volumes:
-    - name: nginx-config
-      configMap:
-        name: frontend
     spec:    
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: frontend    
       containers:
       - name: frontend
         image: mrudula158/frontend:1.2.0
