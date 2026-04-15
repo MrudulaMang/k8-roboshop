@@ -7,3 +7,30 @@ kubectl get endpoints mongodb -n roboshop
     Traffic goes to pod IP 10.244.1.5
     Port 27017 is active
 ------------------
+MONGODB
+kubectl exec -it debug -- sh
+    You just proved:
+    “I can establish a TCP connection to MongoDB”
+
+    #curl mongodb:27017
+    telnet mongodb 27017
+    Trying 10.100.16.177...
+    Connected to mongodb.
+    Escape character is '^]'.
+    ctrl+]
+    telnet>
+        👉 You are now:
+        Connected directly to the MongoDB TCP port (27017)
+        🔥 What this means
+            You are NOT in a shell
+            You are NOT inside the container
+            You are inside a raw TCP session
+        Typing commands here ❌ won’t work
+----------------
+kubectl logs <pod-name> -n roboshop
+kubectl exec -it <pod> -n roboshop -- env | grep -i mongo
+--------
+CATALOGUE
+ kubectl describe svc catalogue
+
+
