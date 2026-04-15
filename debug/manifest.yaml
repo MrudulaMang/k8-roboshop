@@ -5,6 +5,6 @@ metadata:
   name: debug
   namespace: roboshop
 spec:
-  containeres:
+  containers:
     - name: debug
       image: mrudula158/debug:1.0.0

@@ -17,7 +17,7 @@ resource "aws_instance" "docker_roboshop"{
 }
 
 resource "aws_security_group" "allow_tls" {
-  name        = "allow_all_terraform" #this isfor aws account
+  name        = "allow_all_terraform" #this isfor aws account"
   description = "Allow TLS inbound traffic and all outbound traffic"
 
   egress {

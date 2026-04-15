@@ -53,7 +53,7 @@ mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$P
 # mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
 #-----------------------------------------
 
-# do docker login ; docker --version
+# docker login ; docker --version
 # eksctl version
 #aws configure - give access key and secret key - get from  local folder
 
@@ -61,7 +61,7 @@ mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$P
 
 #aws configure
 #aws configure list -----check if configured
-# eksctl create cluster --config-file = eks.yaml
+# eksctl create cluster --config-file=eks.yaml
 
 #--------------------DELETE CLUSTER
 # eksctl delete cluster roboshop

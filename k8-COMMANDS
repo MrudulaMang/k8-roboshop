@@ -1,0 +1,92 @@
+kubectl config set-context --current --namespace=roboshop
+-------------------
+kubectl get pods
+kubectl get pods -A
+kubectl get pods -n <namespace>
+kubectl get svc
+kubectl get deployments
+kubectl get nodes
+kubectl get all
+kubectl get events
+kubectl get configmap
+kubectl get secrets
+kubectl get ingress
+kubectl get pvc
+kubectl get pv
+kubectl get namespaces
+kubectl get replicaset
+kubectl get daemonset
+kubectl get statefulset
+------------
+kubectl describe pod <pod-name>
+kubectl describe svc <service-name>
+kubectl describe deployment <deployment-name>
+kubectl describe node <node-name>
+-----------------
+kubectl create -f file.yaml
+kubectl apply -f file.yaml
+kubectl apply -f .
+kubectl replace -f file.yaml
+---------------
+kubectl delete pod <pod-name>
+kubectl delete svc <service-name>
+kubectl delete deployment <deployment-name>
+kubectl delete -f file.yaml
+kubectl delete all --all
+----------------
+kubectl logs <pod-name>
+kubectl logs -f <pod-name>
+kubectl logs <pod-name> -c <container-name>
+---------------
+kubectl exec -it <pod-name> -- /bin/sh
+kubectl exec -it <pod-name> -c <container-name> -- /bin/sh
+-----------------   
+kubectl scale deployment <name> --replicas=3
+kubectl rollout status deployment <name>
+kubectl rollout restart deployment <name>
+kubectl rollout undo deployment <name>
+kubectl rollout history deployment <name>
+-----------------
+kubectl expose deployment <name> --type=NodePort --port=80
+kubectl port-forward pod/<pod-name> 8080:80
+kubectl port-forward svc/<service-name> 8080:80
+--------------
+kubectl edit deployment <name>
+kubectl edit svc <name>
+---------------
+kubectl cordon <node-name>
+kubectl uncordon <node-name>
+kubectl drain <node-name> --ignore-daemonsets
+-----------------
+kubectl top nodes
+kubectl top pods
+------------
+kubectl config get-contexts
+kubectl config use-context <context-name>
+kubectl config current-context
+--------------------
+kubectl cluster-info
+kubectl version
+kubectl api-resources
+kubectl api-versions
+-------------DEBUG----------------------------
+kubectl exec <pod> -- curl http://service:port
+kubectl exec <pod> -- nc -zv service port
+kubectl exec <pod> -- ping service
+kubectl port-forward pod/<pod> 8080:80
+kubectl port-forward svc/<svc> 8080:80
+---------------
+kubectl get pod <pod> -o yaml
+kubectl get pod <pod> -o json
+kubectl explain pod
+kubectl explain deployment.spec
+--------------
+kubectl get pods -o wide
+kubectl get pods --watch
+kubectl logs -f <pod>
+kubectl get events --sort-by=.metadata.creationTimestamp
+---------------
+
+-------------------
+
+----------------------

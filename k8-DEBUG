@@ -1,0 +1,9 @@
+kubectl get endpoints mongodb -n roboshop
+    --- “Is my service actually pointing to a real running pod?”
+    NAME       ENDPOINTS           AGE
+    mongodb    10.244.1.5:27017    70m
+    👉 Meaning:
+    Service mongodb is correctly mapped
+    Traffic goes to pod IP 10.244.1.5
+    Port 27017 is active
+------------------
