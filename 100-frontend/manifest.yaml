@@ -64,9 +64,9 @@ data:
               stub_status on;
               access_log off;
             }
-        }
-  }  
 
+        }
+    }
 ---
 apiVersion: v1
 kind: Deployment

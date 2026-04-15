@@ -10,4 +10,14 @@ Error from server (BadRequest): error when creating "manifest.yaml": Deployment 
 
 shipping-848f6db495-bq2ts    0/1     OOMKilled   0          2m15s
 shipping-848f6db495-bq2ts    0/1     Running     1 (2s ago)   2m16s
+shipping-848f6db495-bq2ts   0/1     Running   2 (119s ago)   5m20s
+shipping-848f6db495-bq2ts   0/1     OOMKilled   2 (2m9s ago)   5m30s
+    👉 Memory limit exceeded → kernel kills container 💥
+
+shipping-848f6db495-bq2ts   0/1     CrashLoopBackOff   2 (1s ago)     5m31s
+    👉 Memory limit exceeded → kernel kills container 💥
+    Repeated failure + restart backoff
+shipping-848f6db495-bq2ts   0/1     Running            3 (28s ago)    5m58s
+------------------------
+
 
