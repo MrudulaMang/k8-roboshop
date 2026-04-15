@@ -1,4 +1,6 @@
 kubectl config set-context --current --namespace=roboshop
+alias k=kubectl
+
 -------------------
 kubectl get pods
 kubectl get pods -A
