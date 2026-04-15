@@ -142,9 +142,9 @@ spec:
     tier: frontend
     component: frontend
   ports:
-    protocol: TCP
-    port: 80
-    targetPort: 80  
+    - protocol: TCP
+      port: 80
+      targetPort: 80  
 
 
 # in k9 take http path from svc of frontend to open roboshop portal
