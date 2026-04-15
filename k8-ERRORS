@@ -2,6 +2,7 @@ apiVersion: v1 ----------"apps missing here"
 kind: Deployment
     error: resource mapping not found for name: "payment" namespace: "roboshop" from "manifest.yaml": no matches for kind "Deployment" in version "v1"
 ensure CRDs are installed first
+🔥 CRDs = Custom Resource Definitions
 ---------------------------------------------------------------
     cpu: 100m
     memory: 128mi-- beacuse of small m it should be M
