@@ -8,20 +8,20 @@ metadata:
   labels:
     project: roboshop
     tier: db
-    component: mongodb
+    component: redis
 spec:
   replicas: 1
   selector:  
     matchLabels:
-    project: roboshop
-    tier: db
-    component: mongodb
+      project: roboshop
+      tier: db
+      component: redis
   template:
     metadata:
       labels:
-      project: roboshop
-      tier: db
-      component: mongodb    
+        project: roboshop
+        tier: db
+        component: redis   
     spec:
         containers:
         - name: redis
@@ -35,13 +35,13 @@ metadata:
   labels:
     project: roboshop
     tier: db
-    component: mongodb
+    component: redis
 spec:
   selector:
     project: roboshop
     tier: db
-    component: mongodb    
+    component: redis   
   ports:
     - protocol: TCP
       port: 6379
-      targePort: 6379 
+      targetPort: 6379 

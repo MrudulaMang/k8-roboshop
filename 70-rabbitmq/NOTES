@@ -1,0 +1,85 @@
+⚠️ Improvements (not mandatory, but HIGH value)
+1. 🔥 Use management image (strongly recommended)
+image: rabbitmq:3-management
+
+👉 Why this matters:
+
+You get UI at :15672
+You can see queues, connections, failures
+
+Without this:
+👉 You’re debugging blind
+
+2. 🔍 Expose management port
+ports:
+- name: amqp
+  protocol: TCP
+  port: 5672
+  targetPort: 5672
+- name: management
+  protocol: TCP
+  port: 15672
+  targetPort: 15672
+3. 🧠 Add resources (real production requirement)
+
+RabbitMQ can eat memory under load.
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 200m
+    memory: 512Mi
+4. ⚠️ Persistence (important if this was real prod)
+
+Right now:
+👉 If pod restarts → all queues gone
+
+Real setup would need:
+
+PVC (PersistentVolumeClaim)
+5. 🧪 Health checks (optional but strong practice)
+
+RabbitMQ doesn’t expose simple /health like HTTP apps, but you can still:
+
+readinessProbe:
+  tcpSocket:
+    port: 5672
+🧠 Real-world behavior you should expect
+
+Even with this correct YAML:
+
+👉 First few seconds:
+
+Payment may fail connecting
+RabbitMQ still starting
+
+👉 Later:
+
+Everything stabilizes
+🔥 How you verify like a pro
+kubectl get pods -n roboshop
+kubectl get svc -n roboshop
+
+Inside payment pod:
+
+kubectl exec -it <payment-pod> -n roboshop -- sh
+
+# test connection
+nc -zv rabbitmq 5672
+-----------------------
+If you want next level 🚀
+I’ll now break this setup like real production:
+
+👉 RabbitMQ is UP
+👉 Service works
+👉 Still payment fails
+
+And you’ll debug:
+
+credentials
+env injection
+protocol mismatch
+
+That’s where real expertise starts.

@@ -24,18 +24,24 @@ spec:
       tier: db
       component: rabbitmq
   template:
-    containers:
-    - name: rabbitmq
-      image: mrudula158/rabbitmq:1.0.0
-      envFrom: 
-        - configMapRef:
-          name: rabbitmq
+    metadata:
+      labels:
+        project: roboshop
+        tier: db
+        component: rabbitmq
+    spec:    
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:3
+        envFrom: 
+          - configMapRef:
+              name: rabbitmq
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: rabbitmq
-  namespace: rabbitmq
+  namespace: roboshop
   labels:
     project: roboshop
     tier: db
@@ -46,6 +52,6 @@ spec:
     tier: db
     component: rabbitmq
   ports:
-    protocol: TCP
+  - protocol: TCP
     port: 5672
     targetPort: 5672

@@ -21,7 +21,7 @@ sudo usermod -aG docker ec2-user
             # ✔️ No need to relogin into ec2 after assigning the ec2-user to docker grp
             # ✔️ Reloads full login environment
             # ✔️ Picks up new groups
-            
+
 PLATFORM=Linux_amd64
 #ARCH=amd64
 curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
@@ -58,9 +58,12 @@ mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$P
 #aws configure - give access key and secret key - get from  local folder
 
 # create CLUSTER
+
+#aws configure
+#aws configure list -----check if configured
 # eksctl create cluster --config-file = eks.yaml
 
 #--------------------DELETE CLUSTER
-# eksctl delete cluster 
+# eksctl delete cluster roboshop
 
 

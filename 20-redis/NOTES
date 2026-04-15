@@ -1,0 +1,25 @@
+targetPort typo (CRITICAL)
+You wrote:
+targePort: 6379 ❌
+👉 Kubernetes will ignore this → Service may not route correctly
+------------
+Improvements (real-world readiness)
+1. 🔥 Add readiness probe
+
+Right now:
+👉 Pod may be marked ready before Redis is usable
+
+✅ Add
+readinessProbe:
+  tcpSocket:
+    port: 6379
+  initialDelaySeconds: 5
+  periodSeconds: 10
+2. ⚠️ Add resource limits
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi

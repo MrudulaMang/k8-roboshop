@@ -1,0 +1,22 @@
+🗄️ Common Database Default Ports
+Database	Default Port	Notes
+MySQL	    3306	Most widely used relational DB
+MariaDB	    3306	MySQL-compatible
+PostgreSQL	5432	Popular in modern backend systems
+MongoDB	    27017	NoSQL (document-based)
+Redis	    6379	In-memory cache / key-value store
+Oracle DB	1521	Enterprise database
+Microsoft	1433	Used in Windows ecosystems
+SQL Server
+SQLite	❌  N/A	File-based (no port)
+Cassandra	9042	NoSQL wide-column store
+CouchDB	    5984	HTTP-based NoSQL
+Neo4j	    7687	Bolt protocol (graph DB)
+Elasticsearch	9200	REST API
+Elasticsearch (cluster)	9300	Node-to-node communication
+DynamoDB (local)	8000	AWS local testing
+HBase	    16000	Master server
+HBase RegionServer	16020	Region node
+InfluxDB	8086	Time-series DB
+Memcached	11211	Cache (not persistent DB)
+RabbitMQ (queue) 5672	Messaging (not DB, but used like one sometimes)

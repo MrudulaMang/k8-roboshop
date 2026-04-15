@@ -1,0 +1,20 @@
+✔️ Kubernetes structure
+Deployment hierarchy ✅
+template.spec.containers ✅
+Labels & selectors match ✅
+✔️ Config wiring
+ConfigMap defined ✅
+envFrom correctly used ✅
+✔️ Networking
+Service in correct namespace ✅
+Port mapping correct (5672) ✅
+
+
+------
+👉 If not fixed:
+        envFrom:
+          - configMapRef:
+      👉    name: cart
+ConfigMap won’t be injected
+App will fail to connect to Redis/Catalogue
+------------------------

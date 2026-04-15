@@ -2,3 +2,49 @@
 *.tfstate
 *.tfstate.*
 crash.log
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Env files
+.env
+.env.*
+
+# Kubernetes secrets (VERY IMPORTANT)
+secrets.yaml
+secret.yaml
+*.secret.yaml
+
+# Helm
+charts/
+*.tgz
+*.lock
+
+# Kustomize build output
+kustomize-build/
+*.rendered.yaml
+
+# Terraform (if used)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Docker
+*.tar
+
+# Certificates / keys
+*.key
+*.crt
+*.pem
+
+# Temporary files
+tmp/
+temp/

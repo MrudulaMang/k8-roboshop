@@ -10,7 +10,7 @@ metadata:
 data:
   CART_ENDPOINT: "cart:8080" 
   DB_HOST: "mysql"
- 
+--- 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -36,38 +36,38 @@ spec:
     spec:
       containers:
         - name: shipping
-          image: mrudula158/shipping:1.0.0
+          image: mrudula158/shipping:1.2.0
           imagePullPolicy: Always
-      resources:
-        requests:
-          memory: "128Mi"
-          cpu: "100m"
-        limits:
-          memory: "128Mi"
-          cpu: "100m" 
-      readinessProbe:
-        tcpSocket:
-          port: 8080
-        failureThreshold: 2  
-        periodSeconds: 10 
-        initialDelaySeconds: 15 
-      startupProbe:
-        httpGet:
-          path: /health
-          port: 8080
-        failureThreshold: 20
-        periodSEconds: 10   
-      livenessProbe:
-        httpGet:
-          path: /health
-          port: 8080
-        failureThreshold: 2
-        periodSEconds: 10    
-      envFrom:
-      - configMapRef:
-          name: shipping
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m" 
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            failureThreshold: 2  
+            periodSeconds: 10 
+            initialDelaySeconds: 15 
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            failureThreshold: 20
+            periodSeconds: 10   
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            failureThreshold: 2
+            periodSeconds: 10    
+          envFrom:
+          - configMapRef:
+              name: shipping
 ---
-apiversion: v1
+apiVersion: v1
 kind: Service
 metadata: 
   name: shipping

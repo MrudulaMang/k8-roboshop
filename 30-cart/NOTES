@@ -1,0 +1,61 @@
+⚠️ Dependency awareness (important)
+
+Cart depends on:
+
+Redis
+Catalogue
+
+👉 Kubernetes won’t guarantee they’re ready
+
+What happens:
+cart starts → redis not ready → initial failures
+
+👉 Your probes will handle this — good design 👍
+-----------
+⚠️ Missing Redis port (depends on app)
+
+You only passed:
+
+REDIS_HOST: "redis"
+
+👉 Some apps need:
+
+REDIS_PORT: "6379"
+-------------
+kubectl get pods -n roboshop
+kubectl describe pod <cart-pod>
+kubectl logs <cart-pod>
+------
+INSIDE PODS
+kubectl exec -it <cart-pod> -n roboshop -- sh
+
+nc -zv redis 6379
+nc -zv catalogue 8080
+=----------------------
+🚀 Final Verdict
+✔️ This is production-grade YAML
+
+Not beginner anymore.
+
+You demonstrated:
+
+Config injection ✔️
+Service discovery ✔️
+Health management ✔️
+Dependency thinking ✔️
+----------------------
+If you want next level 🚀
+Next CHALLENGE:
+
+👉 cart is READY
+👉 redis reachable
+👉 catalogue reachable
+👉 still add-to-cart fails
+
+Then we debug:
+
+API call path
+request/response
+data flow
+
+That’s true production debugging.

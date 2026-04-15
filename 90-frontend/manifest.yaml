@@ -80,18 +80,24 @@ metadata:
 spec:
   replicas: 1
   selector:
-  matchLabels:
-    project: roboshop
-    tier: frontend
-    component: frontend
+    matchLabels:
+      project: roboshop
+      tier: frontend
+      component: frontend
 template:
+  metadata:
+    labels:
+      project: roboshop
+      tier: frontend
+      component: frontend
+  spec:
     volumes:
     - name: nginx-config
       configMap:
         name: frontend
     containers:
     - name: frontend
-      image: mrudula158/frontend:1.0.0
+      image: mrudula158/frontend:1.2.0
       imagePullPolicy: Always
       # command: ["sleep", "2000"] -> can give command at kubernetes level also
       resources:
@@ -109,14 +115,15 @@ template:
         periodSeconds: 10
       livenessProbe:
         httpGet:
-          path: /
+          path: /health
           port: 80
           failureThreshold: 2
           periodSeconds: 10 
       volumeMounts:
       - name: nginx-config
         mountPath: "/etc/nginx/nginx.conf"
-        subPath: nginx.conf # to tell that above nginx.conf is not dir it is file, deafault treats like dir
+        subPath: nginx.conf 
+        # to tell that above nginx.conf is not dir it is file, deafault treats like dir
         readOnly: true
 ---
 apiVersion: v1
@@ -126,18 +133,18 @@ metadata:
   namespace: roboshop
   labels:
     project: roboshop
-    tier: backend
+    tier: frontend
     component: frontend
 spec:
   type: LoadBalancer
-    selector:
-      project: roboshop
-      tier: frontend
-      component: frontend
-    ports:
-      protocol: TCP
-      port: 80
-      targetPort: 80  
+  selector:
+    project: roboshop
+    tier: frontend
+    component: frontend
+  ports:
+    protocol: TCP
+    port: 80
+    targetPort: 80  
 
 
 # in k9 take http path from svc of frontend to open roboshop portal
@@ -146,3 +153,54 @@ spec:
 # keep nginx.cong file in configmap as file with | 
 # and adding it to volumes of container and mounting the volume
 # any change in config can be done here no need to goto dockerfile and change image-- no image rebuild
+
+# -----------nginx.conf chatgpt recomendation------------------------------
+# Missing proxy headers (real production issue)
+
+# Right now:
+# location /api/catalogue/ { proxy_pass http://catalogue:8080/; }
+# ❌ Missing headers → backend won’t get real client info
+
+# ✅ Fix:
+# location /api/catalogue/ {
+#   proxy_pass http://catalogue:8080/;
+#   proxy_set_header Host $host;
+#   proxy_set_header X-Real-IP $remote_addr;
+# }
+
+# 👉 Without this:
+# Logs show wrong IP
+# Auth / tracing breaks
+# ⚠️ 5. Trailing slash behavior (VERY subtle bug)
+
+# You wrote:
+# location /api/cart/ { proxy_pass http://cart:8080/; }
+
+# 👉 This changes request path
+# Example:
+# /api/cart/items → /items   (prefix stripped)
+# If backend expects /api/cart/items → ❌ break
+# ✅ Safe version:
+# proxy_pass http://cart:8080;
+# (no trailing slash)
+# --------------------probes-chat gpt-------------------
+# Liveness probe may restart healthy pod
+# livenessProbe:
+#   httpGet:
+#     path: /
+
+# 👉 If frontend depends on backend → temporary failure → pod killed unnecessarily
+
+# 💡 Better:
+
+# Use /health (you already defined it 👇)
+# location /health {
+#   stub_status on;
+# }
+
+# ✅ Fix:
+
+# livenessProbe:
+#   httpGet:
+#     path: /health
+#     port: 80

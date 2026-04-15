@@ -14,7 +14,7 @@ data:
   CATALOGUE_PORT: "8080"
 ---
 apiVersion: apps/v1
-kind: deployment
+kind: Deployment
 metadata: 
   name: cart
   namespace: roboshop
@@ -22,48 +22,52 @@ metadata:
     project: roboshop
     tier: backend
     component: cart
-sepc:
+spec:
   replicas: 1
   selector:
-    matchingLabels:
-    project: roboshop
-    tier: backend
-    component: cart
+    matchLabels:
+      project: roboshop
+      tier: backend
+      component: cart
   template:
     metadata:
       labels:
         project: roboshop
         tier: backend
         component: cart
-    containers:
-      - name: cart
-        image: mrudula158/cart:1.0.0
-        imagePullPolicy: Always
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu:  "100m"
-        readinessProbe:
-          tcpSocket:
-            port: 8080
-          failureThreshold: 2
-          periodpolicy: 10
-          initialDelay: 15
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          failureThreshold: 2
-          periodpolicy: 10
-        envFrom:
-          configMapRef:
-            name: cart
+    spec:    
+      containers:
+        - name: cart
+          image: mrudula158/cart:1.2.0
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu:  "100m"
+            limits:
+              memory: "128Mi"
+              cpu:  "100m"
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            failureThreshold: 2
+            periodSeconds: 10
+            initialDelaySeconds: 15
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            failureThreshold: 2
+            periodSeconds: 10
+          envFrom:
+          - configMapRef:
+              name: cart
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: cart
-  namespace: cart
+  namespace: roboshop
   labels:
         project: roboshop
         tier: backend
@@ -74,6 +78,6 @@ spec:
     tier: backend
     component: cart
   ports:
-    protocol: TCP
+  - protocol: TCP
     port: 8080
     targetPort: 8080 
