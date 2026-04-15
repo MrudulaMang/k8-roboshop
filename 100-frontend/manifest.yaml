@@ -84,12 +84,12 @@ spec:
       project: roboshop
       tier: frontend
       component: frontend
-template:
-  metadata:
-    labels:
-      project: roboshop
-      tier: frontend
-      component: frontend
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        tier: frontend
+        component: frontend
   spec:
     volumes:
     - name: nginx-config
