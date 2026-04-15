@@ -80,6 +80,8 @@ kubectl port-forward svc/<svc> 8080:80
 ---------------
 kubectl get pod <pod> -o yaml
 kubectl get pod <pod> -o json
+kubectl get pod shipping-848f6db495-bq2ts -n roboshop -w
+kubectl get pods -n roboshop -w
 kubectl explain pod
 kubectl explain deployment.spec
 --------------

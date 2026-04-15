@@ -1,3 +1,13 @@
-apiVersion: apps/v1
-kind: deployment
+apiVersion: v1 ----------"apps missing here"
+kind: Deployment
+    error: resource mapping not found for name: "payment" namespace: "roboshop" from "manifest.yaml": no matches for kind "Deployment" in version "v1"
+ensure CRDs are installed first
+---------------------------------------------------------------
+    cpu: 100m
+    memory: 128mi-- beacuse of small m it should be M
 Error from server (BadRequest): error when creating "manifest.yaml": Deployment in version "v1" cannot be handled as a Deployment: unable to parse quantity's suffix
+-------------------------------
+
+shipping-848f6db495-bq2ts    0/1     OOMKilled   0          2m15s
+shipping-848f6db495-bq2ts    0/1     Running     1 (2s ago)   2m16s
+
