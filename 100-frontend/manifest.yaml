@@ -117,8 +117,8 @@ spec:
           httpGet:
             path: /health
             port: 80
-            failureThreshold: 2
-            periodSeconds: 10 
+          failureThreshold: 2
+          periodSeconds: 10 
         volumeMounts:
         - name: nginx-config
           mountPath: "/etc/nginx/nginx.conf"
